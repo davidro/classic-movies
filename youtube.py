@@ -3,7 +3,7 @@ import media
 from apiclient.discovery import build
 
 # insert here your Google Dev API key
-API_KEY = ""
+API_KEY = "AIzaSyD4ar-efhC78OeptkkE3Ci2tEjgvr8cEVo"
 list_id = "PLX9_I-EOJPdFuOjcI2zkmTck55homHEBE"
 
 def youtube_list_movies(listid):
@@ -13,7 +13,7 @@ def youtube_list_movies(listid):
         l = []
         for item in response["items"]:
             title = item["snippet"]["title"]
-            title = cap(title, 50)
+            title = cap(title, 24)
             desc = item["snippet"]["description"].encode('utf-8')
             desc = cap(desc, 80)
             img = item["snippet"]["thumbnails"]["high"]["url"]
