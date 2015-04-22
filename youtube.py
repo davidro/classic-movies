@@ -3,7 +3,7 @@ import media
 from apiclient.discovery import build
 
 # insert here your Google Dev API key
-API_KEY = "AIzaSyD4ar-efhC78OeptkkE3Ci2tEjgvr8cEVo"
+API_KEY =""
 list_id = "PLX9_I-EOJPdFuOjcI2zkmTck55homHEBE"
 
 def youtube_list_movies(listid):
