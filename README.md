@@ -1,6 +1,6 @@
 Generate a site with list of classic movies from youtube
 
-1. [Install the Google APIs Client Library for Python](https://developers.google.com/api-client-library/python/start/installation)
+[Install the Google APIs Client Library for Python](https://developers.google.com/api-client-library/python/start/installation)
 ```
  pip install --upgrade google-api-python-client
 ```
