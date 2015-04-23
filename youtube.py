@@ -18,7 +18,7 @@ def youtube_list_movies(listid):
         response = youtube.playlistItems().list(playlistId=listid,part="id,snippet",maxResults="48").execute()
 
         # initialize an empty list
-        l = []
+        list_of_movies = []
 
         # itterate trough the response object and extract title, desc, img and video properties for each item
         for item in response["items"]:
@@ -31,8 +31,8 @@ def youtube_list_movies(listid):
             img = item["snippet"]["thumbnails"]["high"]["url"]
             video = "https://www.youtube.com/watch?v="+item["snippet"]["resourceId"]["videoId"]
             # append each item properties in a list
-            l.append(media.Movie(title,desc,img,video))
-        return l
+            list_of_movies.append(media.Movie(title,desc,img,video))
+        return list_of_movies
 
     # if API_KEY is not provided this part gets executed, where each instance of a Movie class is created by passing in the Title, Description, Picture and URL to video parameters
     else:
@@ -61,15 +61,15 @@ def youtube_list_movies(listid):
                                  "https://i.ytimg.com/vi/0CN3wNgf_EI/hqdefault.jpg",
                                  "https://www.youtube.com/watch?v=0CN3wNgf_EI")
 
-        l = [road_show,clipped_wings,sunny,cross_streets,ten_nights,old_fashioned_girl]
-        return l
+        list_of_movies = [road_show,clipped_wings,sunny,cross_streets,ten_nights,old_fashioned_girl]
+        return list_of_movies
 
 # function to shorten the string length: s - is string, l - is numeric value of characters to preserve in string
-def cap(s, l):
-    return s if len(s)<=l else s[0:l-3]+'...'
+def cap(string_to_shorten, length):
+    return string_to_shorten if len(string_to_shorten)<=length else string_to_shorten[0:length-3]+'...'
 
 
 # finally call the youtube_list_movies function and pass its results to the fresh_tomatoes function
-list = youtube_list_movies(list_id)
+movies_list = youtube_list_movies(list_id)
 # generates the html file with list of movies and opens it in browser
-fresh_tomatoes.open_movies_page(list)
+fresh_tomatoes.open_movies_page(movies_list)
