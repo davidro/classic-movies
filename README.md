@@ -1,5 +1,9 @@
 Generate a site with list of classic movies from youtube
 
+0. [Install the Google APIs Client Library for Python](https://developers.google.com/api-client-library/python/start/installation)
+```
+ pip install --upgrade google-api-python-client
+```
 1. Open a youtube.py
 2. Insert Google Developer API key if you have it
 3. Run the python script and viola, you should get an web page with list of classic movies from youtube
