@@ -10,9 +10,4 @@ Generate a site with list of classic movies from youtube
 
 ![Generated webpage](http://drive.google.com/uc?export=view&id=0B4oMJEtu7TwlUzBJdzBEXzBWT3c)
 
-<sup>
-Based on:
-- [Marco Bootstrap Theme](http://www.blacktie.co/demo/marco/)
-- Udacity fresh_tomatoes.py script
-- Google Fonts
-</sup>
+<sup>Based on:[Marco Bootstrap Theme](http://www.blacktie.co/demo/marco/), Udacity fresh_tomatoes.py script & Google Fonts </sup>
