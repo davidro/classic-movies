@@ -1,5 +1,5 @@
 class Movie():
-    """ This is a documentation of Class Movie"""
+    """ A class with a constructor to create instances of Move oject with title, storyline, poster image and url to movie"""
 
     def __init__(self, movie_title, movie_storyline, poster_image, trailer_youtube):
         self.title = movie_title

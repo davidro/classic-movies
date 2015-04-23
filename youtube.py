@@ -1,25 +1,40 @@
 import fresh_tomatoes
 import media
+# Google APIs Client Library for Python you havto to install in order to run the script: pip install --upgrade google-api-python-client
 from apiclient.discovery import build
 
 # insert here your Google Dev API key
 API_KEY =""
+# youtube playlist id, change it to display movies of a custom list on youtube
 list_id = "PLX9_I-EOJPdFuOjcI2zkmTck55homHEBE"
 
+# function that you pass an youtube playlist id and returns a list containing instances of movies from media module
 def youtube_list_movies(listid):
+
+    # this part gets executed if you provide an API_KEY
     if API_KEY:
+        # make a request to youtube API with youtube playlist id as an parameter
         youtube = build("youtube", "v3", developerKey=API_KEY)
         response = youtube.playlistItems().list(playlistId=listid,part="id,snippet",maxResults="48").execute()
+
+        # initialize an empty list
         l = []
+
+        # itterate trough the response object and extract title, desc, img and video properties for each item
         for item in response["items"]:
             title = item["snippet"]["title"]
+            # shorten title to 24 characters with cap function
             title = cap(title, 24)
             desc = item["snippet"]["description"].encode('utf-8')
+            # shorten description to 80 characters with cap function
             desc = cap(desc, 80)
             img = item["snippet"]["thumbnails"]["high"]["url"]
             video = "https://www.youtube.com/watch?v="+item["snippet"]["resourceId"]["videoId"]
+            # append each item properties in a list
             l.append(media.Movie(title,desc,img,video))
         return l
+
+    # if API_KEY is not provided this part gets executed, where each instance of a Movie class is created by passing in the Title, Description, Picture and URL to video parameters
     else:
         road_show = media.Movie("Road Show",
                                 "Rich playboy Drogo Gaines is in imminent danger of marrying a gold digger, and escapes by feigning insanity ",
@@ -45,11 +60,16 @@ def youtube_list_movies(listid):
                                  "The story revolves around Polly Milton a country girl who visits a wealthy friend in the city",
                                  "https://i.ytimg.com/vi/0CN3wNgf_EI/hqdefault.jpg",
                                  "https://www.youtube.com/watch?v=0CN3wNgf_EI")
+
         l = [road_show,clipped_wings,sunny,cross_streets,ten_nights,old_fashioned_girl]
         return l
 
+# function to shorten the string length: s - is string, l - is numeric value of characters to preserve in string
 def cap(s, l):
     return s if len(s)<=l else s[0:l-3]+'...'
 
+
+# finally call the youtube_list_movies function and pass its results to the fresh_tomatoes function
 list = youtube_list_movies(list_id)
+# generates the html file with list of movies and opens it in browser
 fresh_tomatoes.open_movies_page(list)
